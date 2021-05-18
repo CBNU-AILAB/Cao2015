@@ -41,6 +41,8 @@ def validate(val_loader, model, generator, counter, time_interval):
 
 
 def app(opt):
+    print(opt)
+
     val_loader = torch.utils.data.DataLoader(
         torchvision.datasets.CIFAR10(
             opt.data,
@@ -59,7 +61,7 @@ def app(opt):
     counter = SpikeCounter()
 
     start = time.time()
-    val_acc = validate(val_loader, model, criterion, generator, counter, opt.time_interval)
+    val_acc = validate(val_loader, model, generator, counter, opt.time_interval)
     end = time.time()
 
     print("elapsed: {} - val_acc: {}".format(end-start, val_acc))
@@ -71,6 +73,6 @@ if __name__ == '__main__':
     parser.add_argument('--data', default='data')
     parser.add_argument('--batch_size', default=1, type=int)
     parser.add_argument('--time_interval', default=300, type=int)
-    parser.add_argument('--pretrained', default='tailored_cnn_003.pt')
+    parser.add_argument('--pretrained', default='pretrained/tailored_cnn.pt')
 
     app(parser.parse_args())

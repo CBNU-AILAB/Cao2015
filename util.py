@@ -18,11 +18,16 @@ def load_model(pretrained):
     # model.conv1.conv2d.weight.data.copy_()
 
     model = SpikingCNN()
-    model.conv1.conv2d.weight.data.copy_(torch.Tensor(named_param['conv1.weight']))
-    model.conv2.conv2d.weight.data.copy_(torch.Tensor(named_param['conv2.weight']))
-    model.conv3.conv2d.weight.data.copy_(torch.Tensor(named_param['conv3.weight']))
-    model.fc1.linear.weight.data.copy_(torch.Tensor(named_param['fc1.weight']))
-    model.fc2.linear.weight.data.copy_(torch.Tensor(named_param['fc2.weight']))
+    model.conv1.conv2d.weight.data.copy_(torch.Tensor(named_param['extractor.0.weight']))
+    model.conv2.conv2d.weight.data.copy_(torch.Tensor(named_param['extractor.3.weight']))
+    model.conv3.conv2d.weight.data.copy_(torch.Tensor(named_param['extractor.6.weight']))
+    model.fc1.linear.weight.data.copy_(torch.Tensor(named_param['classifier.0.weight']))
+    model.fc2.linear.weight.data.copy_(torch.Tensor(named_param['classifier.2.weight']))
+    # model.conv1.conv2d.weight.data.copy_(torch.Tensor(named_param['conv1.weight']))
+    # model.conv2.conv2d.weight.data.copy_(torch.Tensor(named_param['conv2.weight']))
+    # model.conv3.conv2d.weight.data.copy_(torch.Tensor(named_param['conv3.weight']))
+    # model.fc1.linear.weight.data.copy_(torch.Tensor(named_param['fc1.weight']))
+    # model.fc2.linear.weight.data.copy_(torch.Tensor(named_param['fc2.weight']))
 
     return model
 
